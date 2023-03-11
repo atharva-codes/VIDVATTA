@@ -121,20 +121,35 @@ This is an example of how to list things you need to use the software and how to
   ```
 
 ### Installation
+- Clone repository with the command `git clone <url>`
+```
+$ git clone https://github.com/atharva-codes/MongoDB-Blog.git
+```
 
-1. Get a free API Key at [https://example.com](https://example.com)
-2. Clone the repo
-   ```sh
-   git clone https://github.com/github_username/repo_name.git
-   ```
-3. Install NPM packages
-   ```sh
-   npm install
-   ```
-4. Enter your API in `config.js`
-   ```js
-   const API_KEY = 'ENTER YOUR API';
-   ```
+- Run `npm i` in your terminal to install `node_modules` and all dependencies in `package.json`
+```
+$ npm i
+```
+- Run `nodemon` in your terminal if installed to start the node server and watch for changes in `app.js`
+```
+$ nodemon
+```
+
+- Or run `node app.js` to start the server if `nodemon` is not installed
+```
+$ node app.js
+```
+
+- The following message should be logged to your console signifying success.
+
+```
+Server started on port 3000
+```
+
+- To use MongoDB with Mongoose locally, do this:
+```
+mongoose.connect("mongodb://localhost:27017/blogDB", {useNewUrlParser: true});
+```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
