@@ -1,7 +1,6 @@
 # Blog Template using EJS
 
 ![GitHub](https://img.shields.io/github/license/efecollins/blog-template-ejs)
-![Twitter Follow](https://img.shields.io/twitter/follow/EfeCollins7?color=blue&style=social)
 
 This is an application that serves as a blog template for potential blog creators. Perfect, if you want to create a blog yourself but not from scratch. **Best for developers**.
 
@@ -11,7 +10,7 @@ The database enables the information on the blog to continuously be available un
 ## Installation
 - Clone repository with the command `git clone <url>`
 ```
-$ git clone https://github.com/efecollins/blog-template-ejs.git
+$ git clone https://github.com/atharva-codes/mongodb-blog.git
 ```
 
 - Run `npm i` in your terminal to install `node_modules` and all dependencies in `package.json`
