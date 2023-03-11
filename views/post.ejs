@@ -1,0 +1,80 @@
+ <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="<%= postBody %>" />
+        <meta property="og:image" content="<%= postImage %>" />
+        <meta name="author" content="Atharva" />
+        <title><%= postTitle %></title>
+        <head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-WTBTSDQH5E"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-WTBTSDQH5E');
+</script>
+</head>
+        <script>
+  var synth = window.speechSynthesis;
+  var utterance = new SpeechSynthesisUtterance();
+</script>
+<script>
+  function speak(text) {
+    utterance.text = text;
+    synth.speak(utterance);
+  }
+</script>
+
+        
+        </head>
+        <style>
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+</style>
+<%- include('partials/header'); %>
+   <header class="masthead" style="background-image: url('<%= postImage %>')">
+            <div class="container position-relative px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                        <div class="post-heading">
+                            <h1><%= postTitle %></h1>
+                            <h2 class="subheading"><%= postSubHeading %></h2>
+                            <h4 class="subheading"><%= postCategory %></h4>
+                            <span class="meta">
+                                Posted by
+                                <a href="#!">Atharv</a>
+                                <%= postDate %>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        
+        <!-- Post Content-->
+          <article class="mb-4">
+            <div class="container px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+ <%- postBody %>                     
+         </div>
+                </div>
+            </div>
+        </article>
+        <button class="btn btn-primary" type="button">go back!</button>
+<%- include('partials/footer'); %>

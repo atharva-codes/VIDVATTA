@@ -1,0 +1,55 @@
+body { 
+  //font-family: 'Source Sans Pro', sans-serif!important;
+  font-family: 'Roboto Slab', serif!important;
+  font-weight : 400!important;
+  background-color : #F1F1F1!important;
+}
+h1,h2,h3 { 
+  //font-family: 'Source Sans Pro', sans-serif!important;
+  font-family: 'Roboto Slab', serif!important;
+}
+
+
+.ta-editor {
+  min-height: 300px;
+  height: auto;
+  overflow: auto;
+  font-family: inherit;
+  font-size: 100%;
+  box-shdaow : none!important;
+}
+
+.ta-toolbar .btn {
+  border-radius : 0;
+  padding : 5px;
+  min-width : 30px;
+  background-color : #fff;
+  color : #333;
+}
+[text-angular] { 
+  position : relative;
+}
+.ta-toolbar { 
+  position : absolute ;
+  top : 0;
+  right : 0;
+}
+@media all and (max-width: 699px) {
+  .ta-toolbar { position : absolute; }
+  .ta-editor { padding-top : 30px; }
+}
+
+@media all and (max-width: 250px) {
+  .ta-toolbar { display : none; }
+}
+.ta-toolbar .btn-group { 
+  margin : 0!important;
+  //box-shadow : 0 1px 3px rgba(0,0,0,0.2);
+}
+.ta-editor {
+  border :1px solid #EEE;
+  border-raidus : 3px!important;
+}
+
+
+

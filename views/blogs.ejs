@@ -1,0 +1,184 @@
+<head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="Blog page of the website. You can find some interesting blogs below." />
+        <meta name="author" content="Atharva" />
+        <title>Blogs Page</title>
+        <head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-WTBTSDQH5E"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-WTBTSDQH5E');
+</script>
+</head>
+        </head>
+<%- include('partials/header'); %>
+
+<header class="masthead" style="background-image: url('assets/img/about-bg.jpg')">
+            <div class="container position-relative px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                        <div class="page-heading">
+                            <h1>Blog Page</h1>
+                            <span class="subheading">Blog Page of WebSite</span>
+                                <form action="/blogs" method="GET">
+        <div class="input-group">
+  <input type="text" name="search" placeholder="Search Blog Title" class="form-control rounded" aria-label="Search" aria-describedby="search-addon" />
+  <input type="submit" class="btn btn-outline-primary"></input>
+</div>
+</form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+   <style>
+   .dark-mode {
+  background-color: #333;
+  color: #fff;
+}
+   </style>
+      <script>
+      const toggleDarkMode = document.getElementById("toggle-dark-mode");
+const lightModeElements = document.querySelectorAll(".light-mode-element");
+
+const currentTheme = localStorage.getItem('theme') || 'light'
+if(currentTheme === 'dark'){
+  lightModeElements.forEach(function (element) {
+    element.classList.add("dark-mode");
+    toggleDarkMode.innerHTML = 'Light Mode'
+  });
+}
+
+toggleDarkMode.addEventListener("click", function () {
+  lightModeElements.forEach(function (element) {
+    element.classList.toggle("dark-mode");
+  });
+  if(currentTheme === 'light'){
+    localStorage.setItem('theme', 'dark')
+    toggleDarkMode.innerHTML = 'Light Mode'
+  }else{
+    localStorage.setItem('theme', 'light')
+    toggleDarkMode.innerHTML = 'Dark Mode'
+  }
+})
+</script>
+
+  <div class="container">
+  <div class="row">
+    <div class="col-lg-8">
+      <!-- Main content area -->
+      
+      <!-- Your existing code -->
+       <form action="/blogs" method="GET">
+        <div class="input-group">
+  <input type="text" name="search" placeholder="Search Blog Title" class="form-control rounded" aria-label="Search" aria-describedby="search-addon" />
+  <input type="submit" class="btn btn-outline-primary"></input>
+</div>
+</form>
+                <hr class="my-4" />
+                
+                
+                    <!-- Post preview-->
+                    <% posts.forEach(post => { %>
+                     <div class="post-preview">
+                        <a href="/blog/post/<%= post.postTitle %>">
+                            <h2 class="post-title"><%= post.postTitle %></h2>
+                            <h4 class="post-subtitle"><%= post.postSubHeading %></h4>
+                            <h5 class="post-subtitle"><%= post.postCategory %></h5>
+                        </a>
+                        <p class="post-meta">
+                            Posted by
+                            <a href="#!">Atharva</a>
+                            on <%= post.postDate %>
+                        </p>
+                    </div>
+                    <hr class="my-4" />
+                    <% }) %>
+                    
+                    <% if (totalPages > 1) { %>
+<nav aria-label="Page navigation example" class="mx-auto">
+  <ul class="pagination text-center">
+    <li class="page-item">
+      <a class="page-link" href="#" aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+        <span class="sr-only">Previous</span>
+      </a>
+    </li>
+    <% for (var i = 1; i <= totalPages; i++) { %>
+    <li class="page-item"><a class="page-link" href="?page=<%= i %>"><%= i %></a></li>
+    <% } %>
+    <li class="page-item">
+      <a class="page-link" href="#" aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+        <span class="sr-only">Next</span>
+      </a>
+    </li>
+  </ul>
+</nav>
+<% } %>
+
+    </div>
+    <div class="col-lg-4 d-flex flex-column">
+      <!-- Side widgets-->
+      <div class="mb-4">
+        <!-- Search widget-->
+        <div class="card">
+          <div class="card-header">Search</div>
+          <div class="card-body">
+            <div class="input-group">
+              <input class="form-control" type="text" placeholder="Enter search term..." aria-label="Enter search term..." aria-describedby="button-search" />
+              <button class="btn btn-primary" id="button-search" type="button">Go!</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="mb-4">
+        <!-- Categories widget-->
+        <div class="card">
+          <div class="card-header">Categories</div>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-sm-6">
+                <ul class="list-unstyled mb-0">
+                  <li><a href="#!">Web Design</a></li>
+                  <li><a href="#!">HTML</a></li>
+                  <li><a href="#!">Freebies</a></li>
+                </ul>
+              </div>
+              <div class="col-sm-6">
+                <ul class="list-unstyled mb-0">
+                  <li><a href="#!">JavaScript</a></li>
+                  <li><a href="#!">CSS</a></li>
+                  <li><a href="#!">Tutorials</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <!-- Side widget-->
+        <div class="card">
+          <div class="card-header">Advertisement</div>
+          <div class="card-body">Add advertisements code to show your advertisement here on this widget.</div>
+        </div>
+        
+         <!-- Side widget@-->
+        <div class="card">
+          <div class="card-header">About The Site</div>
+          <div class="card-body">This is an simple blog website made and hosted on cyclic application. Developer-Atharva</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<%- include('partials/footer'); %>
+Footer
