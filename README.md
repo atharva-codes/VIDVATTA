@@ -31,7 +31,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/atharva-codes/MongoDb-Blog">
-    <img src="img/hello.png" alt="Logo" width="80" height="80">
+    <img src="img/Hello.png" alt="Logo" width="80" height="80">
   </a>
 
 <h3 align="center">MongoDB Blog Application</h3>
