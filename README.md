@@ -30,7 +30,7 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://github.com/atharva-codes/MongoDb-Blog">
+  <a href="https://github.com/atharva-codes/VIDVATTA">
     <img src="img/Hello1.png" alt="Logo" width="80" height="80">
   </a>
 
@@ -220,16 +220,16 @@ Project Link: [https://github.com/github_username/repo_name](https://github.com/
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[contributors-shield]: https://img.shields.io/github/contributors/atharva-codes/MongoDb-Blog.svg?style=for-the-badge
-[contributors-url]: https://github.com/atharva-codes/MongoDb-Blog/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/atharva-codes/MongoDb-Blog.svg?style=for-the-badge
-[forks-url]: https://github.com/atharva-codes/MongoDb-Blog/network/members
-[stars-shield]: https://img.shields.io/github/stars/atharva-codes/MongoDb-Blog.svg?style=for-the-badge
-[stars-url]: https://github.com/atharva-codes/MongoDb-Blog/stargazers
-[issues-shield]: https://img.shields.io/github/issues/atharva-codes/MongoDb-Blog.svg?style=for-the-badge
-[issues-url]: https://github.com/atharva-codes/MongoDb-Blog/issues
-[license-shield]: https://img.shields.io/github/license/atharva-codes/MongoDb-Blog.svg?style=for-the-badge
-[license-url]: https://github.com/atharva-codes/MongoDb-Blog/blob/master/LICENSE
+[contributors-shield]: https://img.shields.io/github/contributors/atharva-codes/VIDVATTA.svg?style=for-the-badge
+[contributors-url]: https://github.com/atharva-codes/VIDVATTA/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/atharva-codes/VIDVATTA.svg?style=for-the-badge
+[forks-url]: https://github.com/atharva-codes/VIDVATTA/network/members
+[stars-shield]: https://img.shields.io/github/stars/atharva-codes/VIDVATTA.svg?style=for-the-badge
+[stars-url]: https://github.com/atharva-codes/VIDVATTA/stargazers
+[issues-shield]: https://img.shields.io/github/issues/atharva-codes/VIDVATTA.svg?style=for-the-badge
+[issues-url]: https://github.com/atharva-codes/VIDVATTA/issues
+[license-shield]: https://img.shields.io/github/license/atharva-codes/VIDVATTA.svg?style=for-the-badge
+[license-url]: https://github.com/atharva-codes/VIDVATTA/blob/master/LICENSE
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/linkedin_username
 [product-screenshot]: images/screenshot.png
