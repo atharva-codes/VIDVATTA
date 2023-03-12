@@ -18,7 +18,7 @@ app.set('view engine', 'ejs');
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static("public"));
-mongoose.connect("", {useNewUrlParser: true});
+mongoose.connect("mongodb+srv://vidvattaDB:vidvattaDBexample@cluster0.1tzcp2l.mongodb.net/?retryWrites=true&w=majority", {useNewUrlParser: true});
 
 const postSchema = {
   postTitle: { type: String, unique: true },
