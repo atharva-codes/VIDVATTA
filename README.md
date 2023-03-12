@@ -65,7 +65,6 @@
     <li>
       <a href="#getting-started">Getting Started</a>
       <ul>
-        <li><a href="#prerequisites">Prerequisites</a></li>
         <li><a href="#installation">Installation</a></li>
       </ul>
     </li>
@@ -110,18 +109,10 @@ The demo can be seen in the VIDVATTA website. The data gets stored in ![MongoDB]
 This is an example of how you may give instructions on setting up your project locally.
 To get a local copy up and running follow these simple example steps.
 
-### Prerequisites
-
-This is an example of how to list things you need to use the software and how to install them.
-* npm
-  ```sh
-  npm install npm@latest -g
-  ```
-
 ### Installation
 - Clone repository with the command `git clone <url>`
 ```
-$ git clone https://github.com/atharva-codes/MongoDB-Blog.git
+$ git clone https://github.com/atharva-codes/VIDVATTA.git
 ```
 
 - Run `npm i` in your terminal to install `node_modules` and all dependencies in `package.json`
@@ -144,7 +135,7 @@ $ node app.js
 Server started on port 3000
 ```
 
-- To use MongoDB with Mongoose locally, do this:
+- To use MongoDB with Mongoose locally, do this in `app.js`:
 ```
 mongoose.connect("mongodb://localhost:27017/blogDB", {useNewUrlParser: true});
 ```
