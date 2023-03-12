@@ -8,8 +8,8 @@ const { application } = require("express");
 const mongoose = require("mongoose");
 
 const homeStartingContent = "";
-const aboutContent = "Hello There👋, This is Atharva, this is my personal blog WebApp. I made it because I am very interested in doing Coding. In This Blog I mostly tags or Represent useful blogs which is needed by most of the people from Around The World for which they always try to Find Answer on Search Engines. I always try to cover Important And Useful Things. If u have any Suggestions related to Blogs or any query so PLS contact me. If i like your Suggestion so I will cover that on my Blog, so PLS don't forgot to Give your name. Thanks For Viewing my About page😊.";
-const contactContent = "Thanks for visiting Contact Us Page contact me on email- contactme.atharvasen@gmail.com";
+const aboutContent = "";
+const contactContent = "";
 
 const app = express();
 app.locals._ = _
@@ -18,8 +18,7 @@ app.set('view engine', 'ejs');
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static("public"));
-mongoose.connect("mongodb+srv://atharvaDB:atharva@cluster0.pxyli6m.mongodb.net/?retryWrites=true&w=majority", {useNewUrlParser: true});
-
+mongoose.connect("", {useNewUrlParser: true});
 
 const postSchema = {
   postTitle: { type: String, unique: true },
