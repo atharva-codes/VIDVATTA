@@ -34,7 +34,7 @@
     <img src="img/Hello1.png" alt="Logo" width="80" height="80">
   </a>
 
-<h3 align="center">MongoDB Blog Application</h3>
+<h3 align="center">VIDVATTA</h3>
 
   <p align="center">
     This is an mongodb blog application with the rich features
