@@ -37,7 +37,7 @@
 <h3 align="center">VIDVATTA</h3>
 
   <p align="center">
-    This is an mongodb blog application with the rich features
+    VIDVATTA is an simple to set-up blog application for developers who want to start their own blog.
     <br />
     <a href="https://github.com/github_username/repo_name"><strong>Explore the docs »</strong></a>
     <br />
@@ -85,11 +85,9 @@
 
 [![Product Name Screen Shot][product-screenshot]](https://example.com)
 
-Here's a blank template to get started: To avoid retyping too much info. Do a search and replace with your text editor for the following: `github_username`, `repo_name`, `twitter_handle`, `linkedin_username`, `email_client`, `email`, `project_title`, `project_description`
-
+VIDVATTA is an simple-to-setup blog application of developers who are interested to start theis own blog.
+The demo can be seen in the VIDVATTA website. The data gets stored in ![MongoDB](https://img.shields.io/badge/MongoDB-%234ea94b.svg?style=for-the-badge&logo=mongodb&logoColor=white) you can edit your database link in
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
 
 ### Built With
 
