@@ -112,7 +112,7 @@ app.get("/blog/post/:postTitle", (req, res) => {
             res.send(err);
         } else {
   
-            res.render('post', { likes: post.likes, postSubHeading: post.postSubHeading, postImage: post.postImage, postCategory: post.postCategory, postDate: post.postDate, postTitle: post.postTitle, postBody: post.postBody });
+            res.render('post', { postSubHeading: post.postSubHeading, postImage: post.postImage, postCategory: post.postCategory, postDate: post.postDate, postTitle: post.postTitle, postBody: post.postBody });
         }
     });
 });
