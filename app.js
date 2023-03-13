@@ -1,4 +1,5 @@
 //jshint esversion:6
+require('dotenv').config();
 
 const express = require("express");
 const bodyParser = require("body-parser");
@@ -18,7 +19,7 @@ app.set('view engine', 'ejs');
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static("public"));
-mongoose.connect("mongodb+srv://vidvattaDB:vidvattaDBexample@cluster0.1tzcp2l.mongodb.net/?retryWrites=true&w=majority", {useNewUrlParser: true});
+mongoose.connect("process.env.MONGO_URI", {useNewUrlParser: true});
 
 const postSchema = {
   postTitle: { type: String, unique: true },
