@@ -111,14 +111,7 @@ app.get("/blog/post/:postTitle", (req, res) => {
         if (err) {
             res.send(err);
         } else {
-            post.likes += 1;
-            post.save(function (err) {
-                if (err) {
-                    res.send(err);
-                } else {
-                    res.send('Success');
-                }
-            }); 
+  
             res.render('post', { likes: post.likes, postSubHeading: post.postSubHeading, postImage: post.postImage, postCategory: post.postCategory, postDate: post.postDate, postTitle: post.postTitle, postBody: post.postBody });
         }
     });
