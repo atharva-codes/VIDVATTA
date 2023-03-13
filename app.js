@@ -111,11 +111,15 @@ app.get("/blog/post/:postTitle", (req, res) => {
         if (err) {
             res.send(err);
         } else {
-  
-            res.render('post', { postSubHeading: post.postSubHeading, postImage: post.postImage, postCategory: post.postCategory, postDate: post.postDate, postTitle: post.postTitle, postBody: post.postBody });
+            if (post) {
+                res.render('post', { postSubHeading: post.postSubHeading, postImage: post.postImage, postCategory: post.postCategory, postDate: post.postDate, postTitle: post.postTitle, postBody: post.postBody });
+            } else {
+                res.send('Post not found');
+            }
         }
     });
 });
+
 
 // Handle undefined routes
 app.use(function(req, res, next) {
