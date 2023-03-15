@@ -206,7 +206,7 @@ Distributed under the MIT License. See `LICENSE` for more information.
 
 <!-- CONTACT -->
 ## Contact
-
+contact me on [Email](mailto:contactme.atharvasen@gmail.com)
 Project Link: [https://github.com/atharva-codes/VIDVATTA](https://github.com/atharva-codes/VIDVATTA)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
