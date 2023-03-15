@@ -106,8 +106,11 @@ The demo can be seen in the VIDVATTA website. The data gets stored in ![MongoDB]
 <!-- GETTING STARTED -->
 ## Getting Started
 
-This is an example of how you may give instructions on setting up your project locally.
-To get a local copy up and running follow these simple example steps.
+Follow these simple steps to get started
+* Fork this repository
+* Clone your forked repository 
+* Run `npm i` to install modules
+* Run `nodemon` or `node app.js`
 
 ### Installation
 - Clone repository with the command `git clone <url>`
