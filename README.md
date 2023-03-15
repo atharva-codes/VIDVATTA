@@ -121,6 +121,8 @@ $ git clone https://github.com/atharva-codes/VIDVATTA.git
 ```
 $ npm i
 ```
+- After installation replace the TinyMce cloud url in `views/partials/header.ejs` add your own url to access rich-text-editor
+
 - Run `nodemon` in your terminal if installed to start the node server and watch for changes in `app.js`
 ```
 $ nodemon
