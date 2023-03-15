@@ -85,7 +85,7 @@
 [![Product Name Screen Shot][product-screenshot]](https://example.com)
 
 VIDVATTA is an simple-to-setup blog application of developers who are interested to start theis own blog.
-The demo can be seen in the VIDVATTA website. The data gets stored in ![MongoDB](https://img.shields.io/badge/MongoDB-%234ea94b.svg?style=for-the-badge&logo=mongodb&logoColor=white) you can edit your database link in
+The demo can be seen in the VIDVATTA website. The data gets stored in ![MongoDB](https://img.shields.io/badge/MongoDB-%234ea94b.svg?style=for-the-badge&logo=mongodb&logoColor=white) you can edit your database link in `app.js` file, and the rich-text editor on this site comes with the help of <bold>Tinymce</bold>
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ### Built With
