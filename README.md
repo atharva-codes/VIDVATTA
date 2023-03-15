@@ -97,7 +97,6 @@ The demo can be seen in the VIDVATTA website. The data gets stored in ![MongoDB]
 * ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
 * ![Bootstrap](https://img.shields.io/badge/bootstrap-%23563D7C.svg?style=for-the-badge&logo=bootstrap&logoColor=white)
 * ![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)
-* [![JQuery][JQuery.com]][JQuery-url]
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -161,10 +160,14 @@ _For more examples, please refer to the [Documentation](https://example.com)_
 <!-- ROADMAP -->
 ## Roadmap
 
-- [ ] Feature 1
-- [ ] Feature 2
-- [ ] Feature 3
-    - [ ] Nested Feature
+- [ ] Rich Text Editor
+- [ ] Search Blog Title
+- [ ] Blog Categories page
+- [ ] Post Title
+- [ ] Post SubHeading
+- [ ] Post Background Image
+- [ ] Post SEP
+- [ ] Post Body
 
 See the [open issues](https://github.com/github_username/repo_name/issues) for a full list of proposed features (and known issues).
 
@@ -193,7 +196,7 @@ Don't forget to give the project a star! Thanks again!
 <!-- LICENSE -->
 ## License
 
-Distributed under the MIT License. See `LICENSE.txt` for more information.
+Distributed under the MIT License. See `LICENSE` for more information.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -211,7 +214,7 @@ Project Link: [https://github.com/atharva-codes/VIDVATTA](https://github.com/ath
 <!-- ACKNOWLEDGMENTS -->
 ## Acknowledgments
 
-* []()
+* [](Atharva)
 * []()
 * []()
 
