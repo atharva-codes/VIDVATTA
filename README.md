@@ -224,7 +224,7 @@ Project Link: [https://github.com/atharva-codes/VIDVATTA](https://github.com/ath
 
 ## Contributors
 <a href="https://github.com/atharva-codes/VIDVATTA/graphs/contributors">
-  <img src="https://opencollective.com/html-react-parser/contributors.svg?width=890&button=false">
+  <img src="https://opencollectivecom/html-react-parser/contributors.svg?width=890&button=false">
 </a>
 
 Made with [contrib.rocks](https://contrib.rocks).
