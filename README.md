@@ -222,7 +222,12 @@ Project Link: [https://github.com/atharva-codes/VIDVATTA](https://github.com/ath
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
+## Contributors
+<a href="https://github.com/atharva-codes/VIDVATTA/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=atharva-codes/VIDVATTA" />
+</a>
 
+Made with [contrib.rocks](https://contrib.rocks).
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
