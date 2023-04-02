@@ -43,34 +43,6 @@
         </tbody>
       </table>
     </div>
-  </body>
-</html>
-
-
-                
-                    <!-- Post preview-->
-                    <% posts.forEach(post => { %>
-  <div class="post-preview">
-    <div class="row">
-      <div class="col-md-3 col-12 mb-3 mb-md-0">
-        <img class="img-fluid rounded" src="<%= post.postImage %>" alt="<%= post.postTitle %>">
-      </div>
-      <div class="col-md-9 col-12">
-        <a href="/blog/post/<%= post.postTitle %>">
-          <h2 class="post-title"><%= post.postTitle %></h2>
-          <h4 class="post-subtitle"><%= post.postSubHeading %></h4>
-          <h5 class="post-subtitle"><%= post.postCategory %></h5>
-        </a>
-        <p class="post-meta">
-          Posted by
-          <a href="#!">Atharva</a>
-          on <%= post.postDate %>
-        </p>
-      </div>
-    </div>
-  </div>
-  <hr class="my-4" />
-<% }) %>
 
                     <% if (totalPages > 1) { %>
 <nav aria-label="Page navigation example" class="mx-auto">
