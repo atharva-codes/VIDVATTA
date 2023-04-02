@@ -72,64 +72,74 @@ toggleDarkMode.addEventListener("click", function () {
   <div class="row">
     <div class="col-lg-8">
       <!-- Main content area -->
-      
-      <!-- Your existing code -->
-       <form action="/blogs" method="GET">
-        <div class="input-group">
-  <input type="text" name="search" placeholder="Search Blog Title" class="form-control rounded" aria-label="Search" aria-describedby="search-addon" />
-  <input type="submit" class="btn btn-outline-primary"></input>
-</div>
-</form>
-                <hr class="my-4" />
-                
-                
-                    <!-- Post preview-->
-                    <% posts.forEach(post => { %>
-  <div class="post-preview">
-    <div class="row">
-      <div class="col-md-3 col-12 mb-3 mb-md-0">
-        <img class="img-fluid rounded" src="<%= post.postImage %>" alt="<%= post.postTitle %>">
+      <div class="search-box rounded shadow-sm mb-4">
+        <form action="/blogs" method="GET">
+          <div class="input-group">
+            <input type="text" name="search" placeholder="Search Blog Title" class="form-control rounded-0 border-0" aria-label="Search" aria-describedby="search-addon" />
+            <div class="input-group-append">
+              <button class="btn btn-primary rounded-0 border-0" type="submit">
+                <i class="fas fa-search"></i>
+              </button>
+            </div>
+          </div>
+        </form>
       </div>
-      <div class="col-md-9 col-12">
-        <a href="/blog/post/<%= post.postTitle %>">
-          <h2 class="post-title"><%= post.postTitle %></h2>
-          <h4 class="post-subtitle"><%= post.postSubHeading %></h4>
-          <h5 class="post-subtitle"><%= post.postCategory %></h5>
-        </a>
-        <p class="post-meta">
-          Posted by
-          <a href="#!">Atharva</a>
-          on <%= post.postDate %>
-        </p>
+
+      <!-- Post preview-->
+      <% posts.forEach(post => { %>
+      <div class="post-box mb-5">
+        <div class="row">
+          <div class="col-md-4">
+            <div class="post-image">
+              <img class="img-fluid rounded shadow-sm" src="<%= post.postImage %>" alt="<%= post.postTitle %>">
+            </div>
+          </div>
+          <div class="col-md-8">
+            <div class="post-details pl-md-4 mt-md-0 mt-3">
+              <a href="/blog/post/<%= post.postTitle %>">
+                <h2 class="post-title font-weight-bold"><%= post.postTitle %></h2>
+                <h4 class="post-subtitle font-weight-normal"><%= post.postSubHeading %></h4>
+                <h5 class="post-subtitle font-weight-light"><%= post.postCategory %></h5>
+              </a>
+              <p class="post-meta">
+                Posted by
+                <a href="#!" class="font-weight-bold">Atharva</a>
+                on <%= post.postDate %>
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
+      <% }) %>
+
+      <% if (totalPages > 1) { %>
+      <nav aria-label="Page navigation example" class="mx-auto">
+        <ul class="pagination justify-content-center">
+          <li class="page-item">
+            <a class="page-link" href="#" aria-label="Previous">
+              <span aria-hidden="true">&laquo;</span>
+              <span class="sr-only">Previous</span>
+            </a>
+          </li>
+          <% for (var i = 1; i <= totalPages; i++) { %>
+          <li class="page-item <%= currentPage == i ? 'active' : '' %>">
+            <a class="page-link" href="?page=<%= i %>"><%= i %></a>
+          </li>
+          <% } %>
+          <li class="page-item">
+            <a class="page-link" href="#" aria-label="Next">
+              <span aria-hidden="true">&raquo;</span>
+              <span class="sr-only">Next</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+      <% } %>
+
     </div>
   </div>
-  <hr class="my-4" />
-<% }) %>
+</div>
 
-                    <% if (totalPages > 1) { %>
-<nav aria-label="Page navigation example" class="mx-auto">
-  <ul class="pagination text-center">
-    <li class="page-item">
-      <a class="page-link" href="#" aria-label="Previous">
-        <span aria-hidden="true">&laquo;</span>
-        <span class="sr-only">Previous</span>
-      </a>
-    </li>
-    <% for (var i = 1; i <= totalPages; i++) { %>
-    <li class="page-item"><a class="page-link" href="?page=<%= i %>"><%= i %></a></li>
-    <% } %>
-    <li class="page-item">
-      <a class="page-link" href="#" aria-label="Next">
-        <span aria-hidden="true">&raquo;</span>
-        <span class="sr-only">Next</span>
-      </a>
-    </li>
-  </ul>
-</nav>
-<% } %>
-
-    </div>
     <div class="col-lg-4 d-flex flex-column">
       <!-- Side widgets-->
       <div class="mb-4">
