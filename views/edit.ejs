@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Edit Post</title>
+</head>
+<body>
+  <h1>Edit Post</h1>
+  <form action="/posts/<%= post._id %>/edit" method="POST">
+    <div>
+      <label for="postTitle">Title</label>
+      <input type="text" name="postTitle" value="<%= post.postTitle %>">
+    </div>
+    <div>
+      <label for="postSubHeading">Sub Heading</label>
+      <input type="text" name="postSubHeading" value="<%= post.postSubHeading %>">
+    </div>
+    <div>
+      <label for="postBody">Content</label>
+      <textarea name="postBody" cols="30" rows="10"><%= post.postBody %></textarea>
+    </div>
+    <div>
+      <label for="postCategory">Category</label>
+      <select name="postCategory">
+        <option value="WebDevelopment" <% if (post.postCategory === 'WebDevelopment') { %>selected<% } %>>Web Development</option>
+        <option value="Coding" <% if (post.postCategory === 'Coding') { %>selected<% } %>>Coding</option>
+      </select>
+    </div>
+    <div>
+      <label for="postImage">Image URL</label>
+      <input type="text" name="postImage" value="<%= post.postImage %>">
+    </div>
+    <button type="submit">Update Post</button>
+  </form>
+</body>
+</html>
