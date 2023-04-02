@@ -120,26 +120,48 @@ app.get("/blog/post/:postTitle", (req, res) => {
     });
 });
 
-app.get("/blog/post/:postTitle/edit", function(req, res) {
-  Post.findOne({_id: req.params.postId}, function(err, post) {
-    if (!err) {
-      res.render("edit", {post: post});
+app.get("/edit/:postTitle", (req, res) => {
+  const requestedTitle = req.params.postTitle;
+  Post.findOne({ postTitle: requestedTitle }, (err, post) => {
+    if (err) {
+      res.send(err);
+    } else {
+      if (post) {
+        res.render('edit', { post: post });
+      } else {
+        res.send('Post not found');
+      }
     }
   });
 });
-app.post("/blog/post/:postTitle/edit", function(req, res) {
-  Post.findByIdAndUpdate(req.params.postId, {
-    postTitle: req.body.postTitle,
-    postSubHeading: req.body.postSubHeading,
-    postBody: req.body.postBody,
-    postCategory: req.body.postCategory,
-    postImage: req.body.postImage,
-  }, function(err, post) {
-    if (!err) {
-      res.redirect("/blog/post/" + post.postTitle);
+
+app.post("/edit/:postTitle", (req, res) => {
+  const requestedTitle = req.params.postTitle;
+  Post.findOneAndUpdate(
+    { postTitle: requestedTitle },
+    {
+      postTitle: req.body.postTitle,
+      postSubHeading: req.body.postSubHeading,
+      postBody: req.body.postBody,
+      postCategory: req.body.postCategory,
+      postImage: req.body.postImage,
+      postDate: req.body.postDate
+    },
+    { new: true },
+    (err, post) => {
+      if (err) {
+        res.send(err);
+      } else {
+        if (post) {
+          res.redirect(`/blog/post/${post.postTitle}`);
+        } else {
+          res.send('Post not found');
+        }
+      }
     }
-  });
+  );
 });
+
 
 
 // Handle undefined routes
