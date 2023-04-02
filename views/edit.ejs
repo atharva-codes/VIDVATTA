@@ -5,7 +5,7 @@
 </head>
 <body>
   <h1>Edit Post</h1>
-  <form action="/blog/post/<%= post.postTitle %>/edit" method="POST">
+  <form action="/edit/<%= post.postTitle %>" method="POST">
     <div>
       <label for="postTitle">Title</label>
       <input type="text" name="postTitle" value="<%= post.postTitle %>">
