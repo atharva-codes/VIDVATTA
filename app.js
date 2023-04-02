@@ -84,11 +84,11 @@ app.get("/info", (req, res) => {
   res.render('info', {contactContent: contactContent})
 })
 
-app.get("/compose", (req, res) => {
-  res.render('compose')
+app.get("/admin/compose", (req, res) => {
+  res.render('admin/compose')
 })
 
-app.post("/compose", (req, res) => {
+app.post("/admin/compose", (req, res) => {
   //{postTitle: req.body.postTitle, postBody: req.body.postBody}
   const post = new Post({
     postTitle: req.body.postTitle,
@@ -100,7 +100,7 @@ app.post("/compose", (req, res) => {
   })
   post.save(err => {
     if(!err) {
-      res.redirect("/");
+      res.redirect("/blogs");
     }
   });
 })
@@ -120,14 +120,14 @@ app.get("/blog/post/:postTitle", (req, res) => {
     });
 });
 
-app.get("/edit/:postTitle", (req, res) => {
+app.get("/admin/edit/:postTitle", (req, res) => {
   const requestedTitle = req.params.postTitle;
   Post.findOne({ postTitle: requestedTitle }, (err, post) => {
     if (err) {
       res.send(err);
     } else {
       if (post) {
-        res.render('edit', { post: post });
+        res.render('admin/edit', { post: post });
       } else {
         res.send('Post not found');
       }
@@ -135,7 +135,7 @@ app.get("/edit/:postTitle", (req, res) => {
   });
 });
 
-app.post("/edit/:postTitle", (req, res) => {
+app.post("/admin/edit/:postTitle", (req, res) => {
   const requestedTitle = req.params.postTitle;
   Post.findOneAndUpdate(
     { postTitle: requestedTitle },
@@ -162,7 +162,7 @@ app.post("/edit/:postTitle", (req, res) => {
   );
 });
 
-app.get("/list-edit", (req, res) => {
+app.get("/admin/list-edit", (req, res) => {
   var search = req.query.search;
   var page = parseInt(req.query.page) || 1;
   var limit = 4;
@@ -172,14 +172,14 @@ app.get("/list-edit", (req, res) => {
     Post.find({ postTitle: regex }, null, {sort: '-postDate'}).skip(skip).limit(limit).exec((err, posts) =>{
       Post.countDocuments({ postTitle: regex }).exec(function(err, count) {
         var totalPages = Math.ceil(count / limit);
-        res.render("list-edit", { posts: posts, totalPages: totalPages });
+        res.render("admin/list-edit", { posts: posts, totalPages: totalPages });
       });
     });
   }else{
     Post.find({}, null, {sort: '-postDate'}).skip(skip).limit(limit).exec((err, posts) =>{
       Post.countDocuments().exec(function(err, count) {
         var totalPages = Math.ceil(count / limit);
-        res.render("list-edit", { posts: posts, totalPages: totalPages });
+        res.render("admin/list-edit", { posts: posts, totalPages: totalPages });
       });
     });
   }
