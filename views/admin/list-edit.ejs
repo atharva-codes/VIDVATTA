@@ -4,7 +4,7 @@
       <!-- Main content area -->
       
       <!-- Your existing code -->
-       <form action="/list-edit" method="GET">
+       <form action="/admin/list-edit" method="GET">
         <div class="input-group">
   <input type="text" name="search" placeholder="Search Blog Title" class="form-control rounded" aria-label="Search" aria-describedby="search-addon" />
   <input type="submit" class="btn btn-outline-primary"></input>
@@ -38,7 +38,7 @@
             <td><%= post.postDate %></td>
             <td><%= post.postCategory %></td>
             <td>
-              <a href="/edit/<%= post.postTitle %>" class="btn btn-primary">Edit Post</a>
+              <a href="/admin/edit/<%= post.postTitle %>" class="btn btn-primary">Edit Post</a>
             </td>
           </tr>
         </tbody>
