@@ -185,6 +185,34 @@ app.get("/admin/list-edit", (req, res) => {
   }
 });
 
+app.get("/admin/login", function(req, res) {
+  res.render("login");
+});
+app.post("/admin/login", function(req, res) {
+  const username = req.body.username;
+  const password = req.body.password;
+
+  // Check if the username and password are correct
+  if (username === "vid" && password === "123456") {
+    // If the credentials are valid, set the session variable to indicate that the user is authenticated
+    req.session.isAuthenticated = true;
+    res.redirect("/admin/admin");
+  } else {
+    // If the credentials are not valid, show an error message
+    res.render("admin/login", { error: "Invalid username or password" });
+  }
+});
+app.get("/admin/admin", function(req, res) {
+  // Check if the user is authenticated
+  if (req.session.isAuthenticated) {
+    // If the user is authenticated, show the admin page
+    res.render("admin/admin");
+  } else {
+    // If the user is not authenticated, redirect them to the login page
+    res.redirect("/admin/login");
+  }
+});
+
 
 // Handle undefined routes
 app.use(function(req, res, next) {
