@@ -120,14 +120,14 @@ app.get("/blog/post/:postTitle", (req, res) => {
     });
 });
 
-app.get("/posts/:postId/edit", function(req, res) {
+app.get("/blog/post/:postTitle/edit", function(req, res) {
   Post.findOne({_id: req.params.postId}, function(err, post) {
     if (!err) {
       res.render("edit", {post: post});
     }
   });
 });
-app.post("/posts/:postId/edit", function(req, res) {
+app.post("/blog/post/:postTitle/edit", function(req, res) {
   Post.findByIdAndUpdate(req.params.postId, {
     postTitle: req.body.postTitle,
     postSubHeading: req.body.postSubHeading,
