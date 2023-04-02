@@ -162,6 +162,28 @@ app.post("/edit/:postTitle", (req, res) => {
   );
 });
 
+app.get("/list-edit", (req, res) => {
+  var search = req.query.search;
+  var page = parseInt(req.query.page) || 1;
+  var limit = 4;
+  var skip = (page - 1) * limit;
+  if(search){
+    var regex = new RegExp(search, 'i');
+    Post.find({ postTitle: regex }, null, {sort: '-postDate'}).skip(skip).limit(limit).exec((err, posts) =>{
+      Post.countDocuments({ postTitle: regex }).exec(function(err, count) {
+        var totalPages = Math.ceil(count / limit);
+        res.render("list-edit", { posts: posts, totalPages: totalPages });
+      });
+    });
+  }else{
+    Post.find({}, null, {sort: '-postDate'}).skip(skip).limit(limit).exec((err, posts) =>{
+      Post.countDocuments().exec(function(err, count) {
+        var totalPages = Math.ceil(count / limit);
+        res.render("list-edit", { posts: posts, totalPages: totalPages });
+      });
+    });
+  }
+});
 
 
 // Handle undefined routes
