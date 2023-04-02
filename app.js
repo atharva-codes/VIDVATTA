@@ -186,7 +186,7 @@ app.get("/admin/list-edit", (req, res) => {
 });
 
 app.get("/admin/login", function(req, res) {
-  res.render("login");
+  res.render("admin/login");
 });
 app.post("/admin/login", function(req, res) {
   const username = req.body.username;
