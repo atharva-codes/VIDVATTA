@@ -30,6 +30,7 @@
             <th>Actions</th>
           </tr>
         </thead>
+        <% posts.forEach(post => { %>
         <tbody>
           <tr>
             <td><%= post.postTitle %></td>
@@ -41,6 +42,7 @@
             </td>
           </tr>
         </tbody>
+        <% }) %>
       </table>
     </div>
 
