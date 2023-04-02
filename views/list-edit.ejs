@@ -24,34 +24,20 @@
         <thead>
           <tr>
             <th>Title</th>
-            <th>Category</th>
+            <th>Post SubHeading</th>
             <th>Date</th>
+            <th>Category</th>
             <th>Actions</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td>Post 1 Title</td>
-            <td>Category 1</td>
-            <td>2023-03-30</td>
+            <td><%= post.postTitle %></td>
+            <td><%= post.postSubHeading %></td>
+            <td><%= post.postDate %></td>
+            <td><%= post.postCategory %></td>
             <td>
-              <a href="/edit/1" class="btn btn-primary">Edit</a>
-            </td>
-          </tr>
-          <tr>
-            <td>Post 2 Title</td>
-            <td>Category 2</td>
-            <td>2023-03-31</td>
-            <td>
-              <a href="/edit/2" class="btn btn-primary">Edit</a>
-            </td>
-          </tr>
-          <tr>
-            <td>Post 3 Title</td>
-            <td>Category 1</td>
-            <td>2023-04-01</td>
-            <td>
-              <a href="/edit/3" class="btn btn-primary">Edit</a>
+              <a href="/edit/<%= post.postTitle %>" class="btn btn-primary">Edit Post</a>
             </td>
           </tr>
         </tbody>
