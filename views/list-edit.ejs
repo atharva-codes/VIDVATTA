@@ -11,7 +11,56 @@
 </div>
 </form>
                 <hr class="my-4" />
-                
+      <!DOCTYPE html>
+<html>
+  <head>
+    <title>Post List</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  </head>
+  <body>
+    <div class="container mt-5">
+      <h1>Post List</h1>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Category</th>
+            <th>Date</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Post 1 Title</td>
+            <td>Category 1</td>
+            <td>2023-03-30</td>
+            <td>
+              <a href="/edit/1" class="btn btn-primary">Edit</a>
+            </td>
+          </tr>
+          <tr>
+            <td>Post 2 Title</td>
+            <td>Category 2</td>
+            <td>2023-03-31</td>
+            <td>
+              <a href="/edit/2" class="btn btn-primary">Edit</a>
+            </td>
+          </tr>
+          <tr>
+            <td>Post 3 Title</td>
+            <td>Category 1</td>
+            <td>2023-04-01</td>
+            <td>
+              <a href="/edit/3" class="btn btn-primary">Edit</a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </body>
+</html>
+
+
                 
                     <!-- Post preview-->
                     <% posts.forEach(post => { %>
