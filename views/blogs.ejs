@@ -38,7 +38,33 @@
         </header>
 
       <!-- Main content area -->
-      
+      <div class="container px-4 px-lg-5">
+    <div class="row gx-4 gx-lg-5 justify-content-center align-items-center">
+        <div class="col-md-10 col-lg-8 col-xl-7">
+            <div class="row">
+                <div class="col-md-4 mb-5">
+                    <div class="square-img-box">
+                        <img src="<%= post.postImage %>" alt="Image" class="img-fluid">
+                    </div>
+                </div>
+                <div class="col-md-8 mb-5">
+                    <div class="post-preview">
+                        <a href="/blog/post/<%= post.postTitle %>">
+                            <h2 class="post-title"><%= post.postTitle %></h2>
+                            <h3 class="post-subtitle"><%= post.postSubHeading %></h3>
+                            <h5 class="post-subtitle"><%= post.postCategory %></h5>
+                        </a>
+                        <p class="post-meta">
+                            Posted by
+                            <a href="#!">Vidvatta</a>
+                            on <%= post.postDate %>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
       <!-- Your existing code -->
        <form action="/blogs" method="GET">
         <div class="input-group">
@@ -46,34 +72,6 @@
   <input type="submit" class="btn btn-outline-primary"></input>
 </div>
 </form>
-<div class="container px-4 px-lg-5">
-  <div class="row gx-4 gx-lg-5 justify-content-center">
-    <% posts.forEach(post => { %>
-    <div class="col-md-10 col-lg-8 col-xl-7">
-      <hr class="my-4" />
-      <div class="container px-4 px-lg-5">
-        <div class="row gx-4 gx-lg-5 align-items-center">
-          <div class="col-md-4 mb-5">
-            <div class="square-img-box">
-              <img src="<%= post.postImage %>" alt="Post Image" class="img-fluid">
-            </div>
-          </div>
-          <div class="col-md-8 mb-5">
-            <div class="post-preview">
-              <a href="/blog/post/<%= post.postTitle %>">
-                <h2 class="post-title"><%= post.postTitle %></h2>
-                <h3 class="post-subtitle"><%= post.postSubHeading %></h3>
-                <h5 class="post-subtitle"><%= post.postCategory %></h5>
-              </a>
-              <p class="post-meta">
-                Posted by <a href="/about">Vidvatta</a> on <%= post.postDate %>
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <% }) %>
     <% if (totalPages > 1) { %>
     <div class="col-md-10 col-lg-8 col-xl-7">
       <nav aria-label="Page navigation example" class="mx-auto">
