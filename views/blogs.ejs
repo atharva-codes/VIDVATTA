@@ -36,37 +36,6 @@
                 </div>
             </div>
         </header>
-   <style>
-   .dark-mode {
-  background-color: #333;
-  color: #fff;
-}
-   </style>
-      <script>
-      const toggleDarkMode = document.getElementById("toggle-dark-mode");
-const lightModeElements = document.querySelectorAll(".light-mode-element");
-
-const currentTheme = localStorage.getItem('theme') || 'light'
-if(currentTheme === 'dark'){
-  lightModeElements.forEach(function (element) {
-    element.classList.add("dark-mode");
-    toggleDarkMode.innerHTML = 'Light Mode'
-  });
-}
-
-toggleDarkMode.addEventListener("click", function () {
-  lightModeElements.forEach(function (element) {
-    element.classList.toggle("dark-mode");
-  });
-  if(currentTheme === 'light'){
-    localStorage.setItem('theme', 'dark')
-    toggleDarkMode.innerHTML = 'Light Mode'
-  }else{
-    localStorage.setItem('theme', 'light')
-    toggleDarkMode.innerHTML = 'Dark Mode'
-  }
-})
-</script>
 
     <div class="row">
     <div class="col-lg-8">
@@ -79,53 +48,30 @@ toggleDarkMode.addEventListener("click", function () {
   <input type="submit" class="btn btn-outline-primary"></input>
 </div>
 </form>
+  <% posts.forEach(post => { %>
                 <hr class="my-4" />
         <div class="container px-4 px-lg-5">
   <div class="row gx-4 gx-lg-5">
     <div class="col-md-4 mb-5">
       <div class="square-img-box">
-        <img src="image.jpg" alt="Post Image" class="img-fluid">
+        <img src="<%= post.postImage %>" alt="Post Image" class="img-fluid">
       </div>
     </div>
     <div class="col-md-8 mb-5">
       <div class="post-preview">
-        <a href="post.html">
-          <h2 class="post-title">Man must explore, and this is exploration at its greatest</h2>
-          <h3 class="post-subtitle">Problems look mighty small from 150 miles up</h3>
+        <a href="/blog/post/<%= post.postTitle %>">
+          <h2 class="post-title"><%= post.postTitle %></h2>
+          <h3 class="post-subtitle"><%= post.postSubHeading %></h3>
+          <h5 class="post-subtitle"><%= post.postCategory %></h5>
         </a>
         <p class="post-meta">
-          Posted by <a href="#!">Start Bootstrap</a> on September 24, 2022
+          Posted by <a href="/about">Vidvatta</a> on <%= post.postDate %>
         </p>
       </div>
     </div>
   </div>
 </div>
-
-
-                    <!-- Post preview-->
-                    <% posts.forEach(post => { %>
-  <div class="post-preview">
-    <div class="row">
-      <div class="col-md-3 col-12 mb-3 mb-md-0">
-        <img class="img-fluid rounded" src="<%= post.postImage %>" alt="<%= post.postTitle %>">
-      </div>
-      <div class="col-md-9 col-12">
-        <a href="/blog/post/<%= post.postTitle %>">
-          <h2 class="post-title"><%= post.postTitle %></h2>
-          <h4 class="post-subtitle"><%= post.postSubHeading %></h4>
-          <h5 class="post-subtitle"><%= post.postCategory %></h5>
-        </a>
-        <p class="post-meta">
-          Posted by
-          <a href="#!">Atharva</a>
-          on <%= post.postDate %>
-        </p>
-      </div>
-    </div>
-  </div>
-  <hr class="my-4" />
 <% }) %>
-
                     <% if (totalPages > 1) { %>
 <nav aria-label="Page navigation example" class="mx-auto">
   <ul class="pagination text-center">
