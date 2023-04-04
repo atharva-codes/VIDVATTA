@@ -36,7 +36,7 @@
                 </div>
             </div>
         </header>
-
+<% posts.forEach(post => { %>
       <!-- Main content area -->
       <div class="container px-4 px-lg-5">
     <div class="row gx-4 gx-lg-5 justify-content-center align-items-center">
@@ -65,6 +65,7 @@
         </div>
     </div>
 </div>
+<% }) %>
       <!-- Your existing code -->
        <form action="/blogs" method="GET">
         <div class="input-group">
