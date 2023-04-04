@@ -37,35 +37,36 @@
             </div>
         </header>
 <% posts.forEach(post => { %>
-      <!-- Main content area -->
-     <div class="container px-4 px-lg-5">
-    <div class="row gx-4 gx-lg-5 justify-content-center">
-        <div class="col-md-12 col-lg-10 col-xl-9">
-            <div class="row">
-                <div class="col-md-4 mb-5">
-                    <div class="square-img-box">
-                        <img src="<%= post.postImage %>" alt="Image" class="img-fluid">
+    <!-- Main content area with box shadow -->
+    <div class="container px-4 px-lg-5 mb-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-12 col-lg-10 col-xl-9 shadow p-3 mb-5 bg-white rounded">
+                <div class="row">
+                    <div class="col-md-4 mb-5">
+                        <div class="square-img-box">
+                            <img src="<%= post.postImage %>" alt="Image" class="img-fluid">
+                        </div>
                     </div>
-                </div>
-                <div class="col-md-8 mb-5">
-                    <div class="post-preview">
-                        <a href="/blog/post/<%= post.postTitle %>">
-                            <h2 class="post-title"><%= post.postTitle %></h2>
-                            <h3 class="post-subtitle"><%= post.postSubHeading %></h3>
-                            <h5 class="post-subtitle"><%= post.postCategory %></h5>
-                        </a>
-                        <p class="post-meta">
-                            Posted by
-                            <a href="#!">Vidvatta</a>
-                            on <%= post.postDate %>
-                        </p>
+                    <div class="col-md-8 mb-5">
+                        <div class="post-preview">
+                            <a href="/blog/post/<%= post.postTitle %>">
+                                <h2 class="post-title"><%= post.postTitle %></h2>
+                                <h3 class="post-subtitle"><%= post.postSubHeading %></h3>
+                                <h5 class="post-subtitle"><%= post.postCategory %></h5>
+                            </a>
+                            <p class="post-meta">
+                                Posted by
+                                <a href="#!">Vidvatta</a>
+                                on <%= post.postDate %>
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 <% }) %>
+
       <!-- Your existing code -->
        <form action="/blogs" method="GET">
         <div class="input-group">
