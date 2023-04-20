@@ -2,13 +2,13 @@
 <html lang="en" dir="ltr">
 
   <head>
-  
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
    <!-- Replace Tinymce cloud url -->
       <script src="https://cdn.tiny.cloud/1/h959l8beepq48wc6vs1n3c9btgkt6s6csr3wq94r33r3j8bo/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
-       <!-- Tinymce Cloud url above-->
+       <!-- Tinymce Cloud url end-->
        
        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-7HYc+2J1+xji3qMkIYrMOoPd9nJZjvTfWnWe+7PMwJdGbw/+7sLs2aU8J6xmry9XuHZCJHmQh1e0yjKd+Pom7g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
         <link rel="icon" type="image/png" href="/Hello1.png" />
           <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         <!-- Font Awesome icons (free version)-->
@@ -20,7 +20,7 @@
         <link href="https://atharva-codes.github.io/privateBlog2/dist/css/styles.css" rel="stylesheet" />
     </head>
   <body>
-          <!-- Navigation-->
+          <!-- Navigation Bar-->
         <nav class="navbar navbar-expand-lg navbar-light" id="mainNav">
             <div class="container px-4 px-lg-5">
                 <a class="navbar-brand" href="/">VIDVATTA</a>
@@ -32,6 +32,8 @@
                     <ul class="navbar-nav ms-auto py-4 py-lg-0">
                         <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="/">Home</a></li>
                         <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="/about">About</a></li>
+
+
                          <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle px-lg-3 py-3 py-lg-4" href="/blogs" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Blogs
@@ -41,12 +43,14 @@
           <a class="dropdown-item" href="#">Coding</a>
         </div>
       </li>
+      <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="/admin/dashboard">Admin</a></li>
                      
                     </ul>
                 </div>
             </div>
         </nav>
    
+        <!-- TinyMce Script START-->
 <script>
     tinymce.init({
       selector: 'textarea',
@@ -60,3 +64,4 @@
       ]
     });
   </script>
+<!-- TinyMce Script END-->
