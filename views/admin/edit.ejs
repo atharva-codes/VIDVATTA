@@ -20,19 +20,19 @@
   <h1>Edit Post</h1>
   <form action="/admin/edit/<%= post.postTitle %>" method="POST">
     <div>
-      <label for="postTitle">Title</label>
+      <label for="postTitle"> Post Title</label>
       <input type="text" name="postTitle" value="<%= post.postTitle %>">
     </div>
     <div>
-      <label for="postSubHeading">Sub Heading</label>
+      <label for="postSubHeading">Post Sub Heading</label>
       <input type="text" name="postSubHeading" value="<%= post.postSubHeading %>">
     </div>
     <div>
-      <label for="postBody">Content</label>
-      <textarea name="postBody" cols="30" rows="10"><%= post.postBody %></textarea>
+      <label for="postBody">Post Content</label>
+      <textarea name="postBody" cols="30" rows="10"><%- post.postBody %></textarea>
     </div>
     <div>
-      <label for="postCategory">Category</label>
+      <label for="postCategory">Post Category</label>
       <select name="postCategory">
         <option value="WebDevelopment" <% if (post.postCategory === 'WebDevelopment') { %>selected<% } %>>Web Development</option>
         <option value="Coding" <% if (post.postCategory === 'Coding') { %>selected<% } %>>Coding</option>
@@ -46,4 +46,4 @@
   </form>
 </body>
 </html>
-<%- include('partials/footer'); %>
+
