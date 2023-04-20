@@ -38,29 +38,43 @@ const Post = mongoose.model("Post", postSchema);
 app.get("/", (req, res) => {
   res.render('home')
 })
+app.get("/admin/dashboard", (req, res) => {
+  res.render('admin/dashboard')
+})
 
-app.get("/blogs", (req, res) => {
-  var search = req.query.search;
-  var page = parseInt(req.query.page) || 1;
-  var limit = 4;
-  var skip = (page - 1) * limit;
-  if(search){
-    var regex = new RegExp(search, 'i');
-    Post.find({ postTitle: regex }, null, {sort: '-postDate'}).skip(skip).limit(limit).exec((err, posts) =>{
-      Post.countDocuments({ postTitle: regex }).exec(function(err, count) {
-        var totalPages = Math.ceil(count / limit);
-        res.render("blogs", { posts: posts, totalPages: totalPages });
-      });
-    });
-  }else{
-    Post.find({}, null, {sort: '-postDate'}).skip(skip).limit(limit).exec((err, posts) =>{
-      Post.countDocuments().exec(function(err, count) {
-        var totalPages = Math.ceil(count / limit);
-        res.render("blogs", { posts: posts, totalPages: totalPages });
-      });
-    });
+app.get("/blogs", async (req, res) => {
+  const search = req.query.search;
+  const page = parseInt(req.query.page) || 1;
+  const limit = 4;
+  const skip = (page - 1) * limit;
+  try {
+    let posts, count;
+    if (search) {
+      const regex = new RegExp(search, "i");
+      [posts, count] = await Promise.all([
+        Post.find({ postTitle: regex }, null, { sort: "-postDate" })
+          .skip(skip)
+          .limit(limit)
+          .exec(),
+        Post.countDocuments({ postTitle: regex }).exec(),
+      ]);
+    } else {
+      [posts, count] = await Promise.all([
+        Post.find({}, null, { sort: "-postDate" })
+          .skip(skip)
+          .limit(limit)
+          .exec(),
+        Post.countDocuments().exec(),
+      ]);
+    }
+    const totalPages = Math.ceil(count / limit);
+    res.render("blogs", { posts, totalPages });
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Internal server error");
   }
 });
+
 
 
 
@@ -106,61 +120,62 @@ app.post("/admin/compose", (req, res) => {
 })
 
 app.get("/blog/post/:postTitle", (req, res) => {
-    const requestedTitle = req.params.postTitle;
-    Post.findOne({ postTitle: requestedTitle }, (err, post) => {
-        if (err) {
-            res.send(err);
-        } else {
-            if (post) {
-                res.render('post', { postSubHeading: post.postSubHeading, postImage: post.postImage, postCategory: post.postCategory, postDate: post.postDate, postTitle: post.postTitle, postBody: post.postBody });
-            } else {
-                res.send('Post not found');
-            }
-        }
-    });
+  const requestedTitle = req.params.postTitle;
+  Post.findOne({ postTitle: requestedTitle })
+      .then(post => {
+          if (post) {
+              res.render('post', { postSubHeading: post.postSubHeading, postImage: post.postImage, postCategory: post.postCategory, postDate: post.postDate, postTitle: post.postTitle, postBody: post.postBody });
+          } else {
+              res.send('Post not found');
+          }
+      })
+      .catch(err => {
+          res.send(err);
+      });
 });
 
 app.get("/admin/edit/:postTitle", (req, res) => {
   const requestedTitle = req.params.postTitle;
-  Post.findOne({ postTitle: requestedTitle }, (err, post) => {
-    if (err) {
-      res.send(err);
-    } else {
+  Post.findOne({ postTitle: requestedTitle })
+    .then(post => {
       if (post) {
         res.render('admin/edit', { post: post });
       } else {
         res.send('Post not found');
       }
-    }
-  });
+    })
+    .catch(err => {
+      res.send(err);
+    });
 });
 
-app.post("/admin/edit/:postTitle", (req, res) => {
+
+app.post("/admin/edit/:postTitle", async (req, res) => {
   const requestedTitle = req.params.postTitle;
-  Post.findOneAndUpdate(
-    { postTitle: requestedTitle },
-    {
-      postTitle: req.body.postTitle,
-      postSubHeading: req.body.postSubHeading,
-      postBody: req.body.postBody,
-      postCategory: req.body.postCategory,
-      postImage: req.body.postImage,
-      postDate: req.body.postDate
-    },
-    { new: true },
-    (err, post) => {
-      if (err) {
-        res.send(err);
-      } else {
-        if (post) {
-          res.redirect(`/blog/post/${post.postTitle}`);
-        } else {
-          res.send('Post not found');
-        }
-      }
+  try {
+    const post = await Post.findAndUpdate(
+      { postTitle: requestedTitle },
+      {
+        postTitle: req.body.postTitle,
+        postSubHeading: req.body.postSubHeading,
+        postBody: req.body.postBody,
+        postCategory: req.body.postCategory,
+        postImage: req.body.postImage,
+        postDate: req.body.postDate
+      },
+      { new: true }
+    );
+    if (post) {
+      res.redirect(`/blog/post/${post.postTitle}`);
+    } else {
+      res.send('Post not found');
     }
-  );
+  } catch (err) {
+    res.send(err);
+  }
 });
+
+
 
 app.get("/admin/list-edit", (req, res) => {
   var search = req.query.search;
@@ -169,21 +184,28 @@ app.get("/admin/list-edit", (req, res) => {
   var skip = (page - 1) * limit;
   if(search){
     var regex = new RegExp(search, 'i');
-    Post.find({ postTitle: regex }, null, {sort: '-postDate'}).skip(skip).limit(limit).exec((err, posts) =>{
-      Post.countDocuments({ postTitle: regex }).exec(function(err, count) {
+    Post.find({ postTitle: regex }, null, {sort: '-postDate'}).skip(skip).limit(limit).then(posts => {
+      return Post.countDocuments({ postTitle: regex }).then(count => {
         var totalPages = Math.ceil(count / limit);
         res.render("admin/list-edit", { posts: posts, totalPages: totalPages });
       });
+    }).catch(err => {
+      console.log(err);
+      res.send("Error fetching posts");
     });
   }else{
-    Post.find({}, null, {sort: '-postDate'}).skip(skip).limit(limit).exec((err, posts) =>{
-      Post.countDocuments().exec(function(err, count) {
+    Post.find({}, null, {sort: '-postDate'}).skip(skip).limit(limit).then(posts =>{
+      return Post.countDocuments().then(count => {
         var totalPages = Math.ceil(count / limit);
         res.render("admin/list-edit", { posts: posts, totalPages: totalPages });
       });
+    }).catch(err => {
+      console.log(err);
+      res.send("Error fetching posts");
     });
   }
 });
+
 
 app.get("/admin/login", function(req, res) {
   res.render("admin/login");
