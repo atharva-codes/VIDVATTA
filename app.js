@@ -1,11 +1,12 @@
-//jshint esversion:6
-
 const express = require("express");
 const bodyParser = require("body-parser");
 const ejs = require("ejs");
 const _ = require("lodash");
 const { application } = require("express");
 const mongoose = require("mongoose");
+const passport = require('passport');
+const LocalStrategy = require('passport-local').Strategy;
+const bcrypt = require('bcrypt');
 
 const homeStartingContent = "";
 const aboutContent = "";
@@ -29,18 +30,100 @@ const postSchema = {
   postImage: String,
   postDate: String
 }
-
-
-
-
 const Post = mongoose.model("Post", postSchema);
+// Define admin schema
+const adminSchema = new mongoose.Schema({
+  username: { type: String, required: true },
+  password: { type: String, required: true }
+});
+
+const Admin = mongoose.model("Admin", adminSchema);
+
+// Configure passport local strategy for admin login
+passport.use(new LocalStrategy((username, password, done) => {
+  Admin.findOne({ username: username })
+    .then((admin) => {
+      if (!admin) { return done(null, false, { message: 'Incorrect username.' }); }
+      bcrypt.compare(password, admin.password, (err, res) => {
+        if (res) {
+          return done(null, admin);
+        } else {
+          return done(null, false, { message: 'Incorrect password.' });
+        }
+      });
+    })
+    .catch((err) => { return done(err); });
+}));
+
+
+passport.serializeUser((admin, done) => {
+  done(null, admin.id);
+});
+
+passport.deserializeUser((id, done) => {
+  Admin.findById(id).then(function(user) {
+    done(null, user);
+  }).catch(function(err) {
+    done(err, null);
+  });
+});
+  
+
+// Use passport session middleware
+app.use(require('express-session')({
+  secret: 'secret',
+  resave: false,
+  saveUninitialized: false
+}));
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+// Middleware to check if user is authenticated
+function isAuthenticated(req, res, next) {
+  if (req.isAuthenticated()) {
+    return next();
+  }
+  res.redirect('/admin/login');
+}
 
 app.get("/", (req, res) => {
   res.render('home')
-})
-app.get("/admin/dashboard", (req, res) => {
+});
+
+app.get("/admin/dashboard", isAuthenticated, (req, res) => {
   res.render('admin/dashboard')
-})
+});
+
+app.get('/admin/login', (req, res) => {
+  const errorMessage = 'Invalid username or password';
+  res.render('admin/login', { errorMessage });
+});
+
+
+app.post("/admin/login", passport.authenticate('local', { failureRedirect: '/admin/login' }), (req, res) => {
+  res.redirect('/admin/dashboard');
+});
+
+app.get('/admin/logout', function(req, res){
+  req.logout(function(){});
+  res.redirect('/admin/logout');
+});
+
+app.get("/blog/post/:postTitle", (req, res) => {
+  const requestedTitle = req.params.postTitle;
+  Post.findOne({ postTitle: requestedTitle })
+      .then(post => {
+          if (post) {
+              res.render('post', { postSubHeading: post.postSubHeading, postImage: post.postImage, postCategory: post.postCategory, postDate: post.postDate, postTitle: post.postTitle, postBody: post.postBody });
+          } else {
+              res.send('Post not found');
+          }
+      })
+      .catch(err => {
+          res.send(err);
+      });
+});
 
 app.get("/blogs", async (req, res) => {
   const search = req.query.search;
@@ -98,11 +181,28 @@ app.get("/info", (req, res) => {
   res.render('info', {contactContent: contactContent})
 })
 
-app.get("/admin/compose", (req, res) => {
-  res.render('admin/compose')
-})
+// Add middleware to check if user is authenticated
+function requireAuth(req, res, next) {
+  if (req.isAuthenticated()) {
+    return next();
+  }
+  res.redirect('/admin/login');
+}
 
-app.post("/admin/compose", (req, res) => {
+// Add middleware to set the user in the response locals for all routes
+function setUserInLocals(req, res, next) {
+  res.locals.user = req.user;
+  next();
+}
+
+// Apply middleware to all routes
+app.use(setUserInLocals);
+
+// Routes that require authentication
+app.get('/admin/compose', requireAuth, (req, res) => {
+  res.render('admin/compose');
+});
+app.post("/admin/compose", requireAuth, (req, res) => {
   //{postTitle: req.body.postTitle, postBody: req.body.postBody}
   const post = new Post({
     postTitle: req.body.postTitle,
@@ -110,74 +210,20 @@ app.post("/admin/compose", (req, res) => {
     postBody: req.body.postBody,
     postCategory: req.body.postCategory,
     postImage: req.body.postImage,
-     postDate: req.body.postDate
-  })
-  post.save(err => {
-    if(!err) {
-      res.redirect("/blogs");
-    }
+    postDate: req.body.postDate
   });
-})
 
-app.get("/blog/post/:postTitle", (req, res) => {
-  const requestedTitle = req.params.postTitle;
-  Post.findOne({ postTitle: requestedTitle })
-      .then(post => {
-          if (post) {
-              res.render('post', { postSubHeading: post.postSubHeading, postImage: post.postImage, postCategory: post.postCategory, postDate: post.postDate, postTitle: post.postTitle, postBody: post.postBody });
-          } else {
-              res.send('Post not found');
-          }
-      })
-      .catch(err => {
-          res.send(err);
-      });
-});
-
-app.get("/admin/edit/:postTitle", (req, res) => {
-  const requestedTitle = req.params.postTitle;
-  Post.findOne({ postTitle: requestedTitle })
-    .then(post => {
-      if (post) {
-        res.render('admin/edit', { post: post });
-      } else {
-        res.send('Post not found');
-      }
+  post.save()
+    .then(() => {
+      res.redirect("/blogs");
     })
     .catch(err => {
-      res.send(err);
+      console.error(err);
+      res.sendStatus(500);
     });
 });
 
-
-app.post("/admin/edit/:postTitle", async (req, res) => {
-  const requestedTitle = req.params.postTitle;
-  try {
-    const post = await Post.findAndUpdate(
-      { postTitle: requestedTitle },
-      {
-        postTitle: req.body.postTitle,
-        postSubHeading: req.body.postSubHeading,
-        postBody: req.body.postBody,
-        postCategory: req.body.postCategory,
-        postImage: req.body.postImage,
-        postDate: req.body.postDate
-      },
-      { new: true }
-    );
-    if (post) {
-      res.redirect(`/blog/post/${post.postTitle}`);
-    } else {
-      res.send('Post not found');
-    }
-  } catch (err) {
-    res.send(err);
-  }
-});
-
-
-
-app.get("/admin/list-edit", (req, res) => {
+app.get("/admin/list-edit", requireAuth, (req, res) => {
   var search = req.query.search;
   var page = parseInt(req.query.page) || 1;
   var limit = 4;
@@ -206,35 +252,52 @@ app.get("/admin/list-edit", (req, res) => {
   }
 });
 
+// Use async/await consistently for better readability
+app.get('/admin/edit/:postTitle', requireAuth, async (req, res) => {
+  try {
+    const requestedTitle = req.params.postTitle;
+    const post = await Post.findOne({ postTitle: requestedTitle });
 
-app.get("/admin/login", function(req, res) {
-  res.render("admin/login");
-});
-app.post("/admin/login", function(req, res) {
-  const username = req.body.username;
-  const password = req.body.password;
-
-  // Check if the username and password are correct
-  if (username === "vid" && password === "123456") {
-    // If the credentials are valid, set the session variable to indicate that the user is authenticated
-    req.session.isAuthenticated = true;
-    res.redirect("/admin/admin");
-  } else {
-    // If the credentials are not valid, show an error message
-    res.render("admin/login", { error: "Invalid username or password" });
-  }
-});
-app.get("/admin/admin", function(req, res) {
-  // Check if the user is authenticated
-  if (req.session.isAuthenticated) {
-    // If the user is authenticated, show the admin page
-    res.render("admin/admin");
-  } else {
-    // If the user is not authenticated, redirect them to the login page
-    res.redirect("/admin/login");
+    if (post) {
+      res.render('admin/edit', { post: post });
+    } else {
+      res.send('Post not found');
+    }
+  } catch (err) {
+    // Consider using a more descriptive error message or rendering an error page
+    res.send('Error fetching post');
   }
 });
 
+app.post("/admin/edit/:postTitle", requireAuth, async (req, res) => {
+  try {
+    const requestedTitle = req.params.postTitle;
+    const updatedPost = {
+      postTitle: req.body.postTitle,
+      postSubHeading: req.body.postSubHeading,
+      postBody: req.body.postBody,
+      postCategory: req.body.postCategory,
+      postImage: req.body.postImage,
+      postDate: req.body.postDate
+    };
+    // Use findOneAndUpdate() instead of findAndUpdate() for consistency with findOne()
+    const post = await Post.findOneAndUpdate(
+      { postTitle: requestedTitle },
+      updatedPost,
+      { new: true }
+    );
+    
+    if (post) {
+      // Redirect to the post URL after updating
+      res.redirect(`/blog/post/${post.postTitle}`);
+    } else {
+      res.send('Post not found');
+    }
+  } catch (err) {
+    // Consider using a more descriptive error message or rendering an error page
+    res.send('Error updating post');
+  }
+});
 
 // Handle undefined routes
 app.use(function(req, res, next) {

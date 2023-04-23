@@ -132,11 +132,19 @@ $ nodemon
 ```
 $ node app.js
 ```
-
 - The following message should be logged to your console signifying success.
 
 ```
 Server started on port 3000
+```
+
+- To Create Admin Login, Open Folder `createAdmin.js` and Replace the Username, Password and DB Url with yours, Instruction Given in The FOLDER. And Run
+```
+$ node createAdmin.js
+```
+- After Running Following message be logged to your console
+```
+Admin created successfully
 ```
 
 - To use MongoDB with Mongoose locally, do this in `app.js`:
